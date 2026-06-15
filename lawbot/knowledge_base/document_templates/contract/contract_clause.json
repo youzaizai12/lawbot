@@ -1,0 +1,106 @@
+{
+  "template_id": "contract_clause",
+  "name": "合同条款建议",
+  "version": "1.0.0",
+  "title": "{{contract_name}}",
+  "structure": [
+    {
+      "section": "header",
+      "label": "合同首部",
+      "template": "{{contract_name}}\n\n甲方（{{party_a_type}}）：{{party_a_name}}\n统一社会信用代码/身份证号：{{party_a_id}}\n法定代表人/负责人：{{party_a_rep}}\n地址：{{party_a_address}}\n联系电话：{{party_a_phone}}\n\n乙方（{{party_b_type}}）：{{party_b_name}}\n统一社会信用代码/身份证号：{{party_b_id}}\n法定代表人/负责人：{{party_b_rep}}\n地址：{{party_b_address}}\n联系电话：{{party_b_phone}}\n\n鉴于：\n{{preamble}}\n\n双方本着平等自愿、诚实信用的原则，经协商一致，达成如下协议：",
+      "fields": [
+        {"key": "contract_name", "label": "合同名称", "type": "string", "required": true, "example": "买卖合同"},
+        {"key": "party_a_type", "label": "甲方类型", "type": "select", "options": ["买方", "卖方", "出租方", "承租方", "委托方", "受托方", "甲方"], "default": "甲方"},
+        {"key": "party_a_name", "label": "甲方名称", "type": "string", "required": true},
+        {"key": "party_a_id", "label": "证件号码", "type": "string"},
+        {"key": "party_a_rep", "label": "法定代表人/本人", "type": "string"},
+        {"key": "party_a_address", "label": "地址", "type": "string", "required": true},
+        {"key": "party_a_phone", "label": "电话", "type": "string"},
+        {"key": "party_b_type", "label": "乙方类型", "type": "select", "options": ["买方", "卖方", "出租方", "承租方", "委托方", "受托方", "乙方"], "default": "乙方"},
+        {"key": "party_b_name", "label": "乙方名称", "type": "string", "required": true},
+        {"key": "party_b_id", "label": "证件号码", "type": "string"},
+        {"key": "party_b_rep", "label": "法定代表人/本人", "type": "string"},
+        {"key": "party_b_address", "label": "地址", "type": "string", "required": true},
+        {"key": "party_b_phone", "label": "电话", "type": "string"},
+        {"key": "preamble", "label": "鉴于条款", "type": "text"}
+      ]
+    },
+    {
+      "section": "subject_matter",
+      "label": "标的条款",
+      "template": "第一条 标的\n\n{{subject_matter}}",
+      "fields": [
+        {"key": "subject_matter", "label": "标的描述", "type": "text", "required": true}
+      ]
+    },
+    {
+      "section": "price",
+      "label": "价款条款",
+      "template": "第二条 价款及支付\n\n2.1 本合同项下标的物总价款为人民币{{total_price}}元（大写：{{total_price_cn}}）。\n\n2.2 支付方式：\n{{payment_method}}\n\n2.3 支付期限：{{payment_deadline}}",
+      "fields": [
+        {"key": "total_price", "label": "总价款", "type": "string", "required": true},
+        {"key": "total_price_cn", "label": "大写金额", "type": "string"},
+        {"key": "payment_method", "label": "支付方式", "type": "text", "example": "银行转账/现金/支票"},
+        {"key": "payment_deadline", "label": "支付期限", "type": "string", "example": "合同签订后7个工作日内"}
+      ]
+    },
+    {
+      "section": "delivery",
+      "label": "交付条款",
+      "template": "第三条 交付\n\n3.1 交付时间：{{delivery_time}}\n\n3.2 交付地点：{{delivery_place}}\n\n3.3 交付方式：{{delivery_method}}\n\n3.4 验收标准：{{acceptance_standard}}",
+      "fields": [
+        {"key": "delivery_time", "label": "交付时间", "type": "string"},
+        {"key": "delivery_place", "label": "交付地点", "type": "string"},
+        {"key": "delivery_method", "label": "交付方式", "type": "string", "example": "自提/送货上门/快递"},
+        {"key": "acceptance_standard", "label": "验收标准", "type": "text"}
+      ]
+    },
+    {
+      "section": "rights_obligations",
+      "label": "权利义务",
+      "template": "第四条 双方权利与义务\n\n{{#party_a_obligations}}4.1 甲方义务：\n{{party_a_obligations}}{{/party_a_obligations}}\n\n{{#party_b_obligations}}4.2 乙方义务：\n{{party_b_obligations}}{{/party_b_obligations}}\n\n{{#party_a_rights}}4.3 甲方权利：\n{{party_a_rights}}{{/party_a_rights}}\n\n{{#party_b_rights}}4.4 乙方权利：\n{{party_b_rights}}{{/party_b_rights}}",
+      "fields": [
+        {"key": "party_a_obligations", "label": "甲方义务", "type": "list"},
+        {"key": "party_b_obligations", "label": "乙方义务", "type": "list"},
+        {"key": "party_a_rights", "label": "甲方权利", "type": "list"},
+        {"key": "party_b_rights", "label": "乙方权利", "type": "list"}
+      ]
+    },
+    {
+      "section": "breach",
+      "label": "违约责任",
+      "template": "第五条 违约责任\n\n{{breach_clauses}}\n\n5.1 任何一方违反本合同约定，应向守约方支付违约金，违约金数额为合同总价款的{{penalty_rate}}%。\n\n5.2 因违约给对方造成损失的，违约金不足以弥补损失的，违约方还应赔偿守约方的实际损失。",
+      "fields": [
+        {"key": "breach_clauses", "label": "具体违约条款", "type": "list"},
+        {"key": "penalty_rate", "label": "违约金比例", "type": "string", "default": "20"}
+      ]
+    },
+    {
+      "section": "force_majeure",
+      "label": "不可抗力",
+      "template": "第六条 不可抗力\n\n因不可抗力导致本合同无法履行的，根据不可抗力的影响，部分或全部免除责任。遭遇不可抗力的一方应在{{notice_days}}日内通知对方，并提供相关证明。",
+      "fields": [
+        {"key": "notice_days", "label": "通知期限", "type": "string", "default": "7"}
+      ]
+    },
+    {
+      "section": "dispute_resolution",
+      "label": "争议解决",
+      "template": "第七条 争议解决\n\n因本合同引起的或与本合同有关的任何争议，双方应友好协商解决；协商不成的，任何一方均有权向{{dispute_place}}人民法院提起诉讼。\n\n第八条 其他约定\n\n{{other_clauses}}\n\n第九条 合同生效\n\n本合同自双方签字或盖章之日起生效。本合同一式{{copy_count}}份，甲乙双方各执{{copy_count_each}}份，具有同等法律效力。",
+      "fields": [
+        {"key": "dispute_place", "label": "管辖法院所在地", "type": "string", "default": "合同签订地"},
+        {"key": "other_clauses", "label": "其他约定", "type": "text"},
+        {"key": "copy_count", "label": "总份数", "type": "number", "default": 2},
+        {"key": "copy_count_each", "label": "各方执份数", "type": "number", "default": 1}
+      ]
+    },
+    {
+      "section": "signatures",
+      "label": "签章页",
+      "template": "（以下无正文）\n\n甲方（盖章）：{{party_a_name}}\n法定代表人/授权代表（签字）：\n日期：{{sign_date}}\n\n乙方（盖章）：{{party_b_name}}\n法定代表人/授权代表（签字）：\n日期：{{sign_date}}",
+      "fields": [
+        {"key": "sign_date", "label": "签订日期", "type": "date", "auto": true}
+      ]
+    }
+  ]
+}

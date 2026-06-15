@@ -1,0 +1,73 @@
+{
+  "template_id": "civil_complaint",
+  "name": "民事起诉状",
+  "version": "1.0.0",
+  "title": "民事起诉状",
+  "structure": [
+    {
+      "section": "plaintiff",
+      "label": "原告信息",
+      "template": "原告：{{plaintiff_name}}，{{plaintiff_gender}}，{{plaintiff_birth}}出生，{{plaintiff_ethnic}}族，{{plaintiff_occupation}}，住{{plaintiff_address}}，公民身份号码{{plaintiff_id}}。\n联系电话：{{plaintiff_phone}}",
+      "fields": [
+        {"key": "plaintiff_name", "label": "姓名", "type": "string", "required": true, "example": "张三"},
+        {"key": "plaintiff_gender", "label": "性别", "type": "select", "options": ["男", "女"], "required": true},
+        {"key": "plaintiff_birth", "label": "出生日期", "type": "date", "example": "1990年1月1日"},
+        {"key": "plaintiff_ethnic", "label": "民族", "type": "string", "default": "汉"},
+        {"key": "plaintiff_occupation", "label": "职业", "type": "string", "example": "职员"},
+        {"key": "plaintiff_address", "label": "住址", "type": "string", "required": true},
+        {"key": "plaintiff_id", "label": "身份证号", "type": "string", "required": true},
+        {"key": "plaintiff_phone", "label": "联系电话", "type": "string"}
+      ]
+    },
+    {
+      "section": "defendant",
+      "label": "被告信息",
+      "template": "被告：{{defendant_name}}，{{defendant_gender}}，{{defendant_birth}}出生，{{defendant_ethnic}}族，{{defendant_occupation}}，住{{defendant_address}}，公民身份号码{{defendant_id}}。\n{{#defendant_phone}}联系电话：{{defendant_phone}}{{/defendant_phone}}",
+      "fields": [
+        {"key": "defendant_name", "label": "姓名/名称", "type": "string", "required": true},
+        {"key": "defendant_gender", "label": "性别", "type": "select", "options": ["男", "女", "法人"]},
+        {"key": "defendant_birth", "label": "出生日期/成立日期", "type": "string"},
+        {"key": "defendant_ethnic", "label": "民族", "type": "string", "default": "汉"},
+        {"key": "defendant_occupation", "label": "职业/法定代表人", "type": "string"},
+        {"key": "defendant_address", "label": "住址/住所地", "type": "string", "required": true},
+        {"key": "defendant_id", "label": "身份证号/统一社会信用代码", "type": "string"},
+        {"key": "defendant_phone", "label": "联系电话", "type": "string"}
+      ]
+    },
+    {
+      "section": "claims",
+      "label": "诉讼请求",
+      "template": "诉讼请求：\n{{#claims}}\n{{index}}. {{item}}\n{{/claims}}",
+      "fields": [
+        {"key": "claims", "label": "诉讼请求", "type": "list", "required": true, "min_items": 1}
+      ],
+      "examples": [
+        "判令被告立即向原告偿还借款本金{{amount}}元及利息（以{{amount}}元为基数，自{{date}}起按年利率{{rate}}%计算至实际付清之日止）；",
+        "判令被告承担本案全部诉讼费用；",
+        "判令被告支付违约金{{amount}}元；",
+        "判令确认原被告之间的合同于{{date}}解除；",
+        "判令被告赔偿原告经济损失{{amount}}元。"
+      ]
+    },
+    {
+      "section": "facts",
+      "label": "事实与理由",
+      "template": "事实与理由：\n\n{{facts}}\n\n{{#evidence}}证据及证据来源：\n{{evidence}}{{/evidence}}\n\n{{#legal_basis}}法律依据：\n{{legal_basis}}{{/legal_basis}}\n\n综上所述，原告认为被告的行为严重侵害了原告的合法权益。为维护原告的合法权益，特依据《中华人民共和国民法典》及相关法律法规，向贵院提起诉讼，恳请贵院依法支持原告的全部诉讼请求。",
+      "fields": [
+        {"key": "facts", "label": "事实描述", "type": "text", "required": true},
+        {"key": "evidence", "label": "证据清单", "type": "list"},
+        {"key": "legal_basis", "label": "法律依据", "type": "text"}
+      ]
+    },
+    {
+      "section": "closing",
+      "label": "结尾",
+      "template": "此致\n{{court_name}}\n\n具状人：{{plaintiff_name}}\n{{date}}\n\n{{#attachments}}附：\n{{attachments}}{{/attachments}}",
+      "fields": [
+        {"key": "court_name", "label": "受诉法院", "type": "string", "required": true, "example": "XX市XX区人民法院"},
+        {"key": "date", "label": "日期", "type": "date", "auto": true},
+        {"key": "attachments", "label": "附件", "type": "list"}
+      ]
+    }
+  ]
+}

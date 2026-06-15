@@ -1,0 +1,50 @@
+{
+  "version": "1.0.0",
+  "templates": [
+    {
+      "id": "civil_complaint",
+      "name": "民事起诉状",
+      "type": "complaint",
+      "file": "complaint/civil_complaint.json",
+      "description": "民事起诉状标准模板",
+      "scenes": ["contract", "private_lending", "property", "tort", "consumer"],
+      "keywords": ["起诉", "诉讼", "法院", "被告", "原告"]
+    },
+    {
+      "id": "civil_defense",
+      "name": "民事答辩状",
+      "type": "defense",
+      "file": "defense/civil_defense.json",
+      "description": "民事答辩状标准模板",
+      "scenes": ["contract", "private_lending", "property", "tort"],
+      "keywords": ["答辩", "应诉", "被起诉", "抗辩"]
+    },
+    {
+      "id": "labor_arbitration",
+      "name": "劳动仲裁申请书",
+      "type": "labor_application",
+      "file": "labor/arbitration_application.json",
+      "description": "劳动仲裁申请书模板",
+      "scenes": ["labor"],
+      "keywords": ["劳动仲裁", "工资", "辞退", "加班", "社保"]
+    },
+    {
+      "id": "contract_clause",
+      "name": "合同条款建议",
+      "type": "contract_clause",
+      "file": "contract/contract_clause.json",
+      "description": "常用合同条款模板库",
+      "scenes": ["contract"],
+      "keywords": ["合同", "协议", "条款", "约定"]
+    },
+    {
+      "id": "criminal_defense",
+      "name": "刑事辩护意见书",
+      "type": "criminal_defense",
+      "file": "criminal/criminal_defense.json",
+      "description": "刑事辩护意见书模板",
+      "scenes": ["criminal"],
+      "keywords": ["刑事", "辩护", "罪名", "量刑", "取保"]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "template_id": "civil_defense",
+  "name": "民事答辩状",
+  "version": "1.0.0",
+  "title": "民事答辩状",
+  "structure": [
+    {
+      "section": "defendant",
+      "label": "答辩人信息",
+      "template": "答辩人：{{defendant_name}}，{{defendant_gender}}，{{defendant_birth}}出生，{{defendant_ethnic}}族，{{defendant_occupation}}，住{{defendant_address}}，公民身份号码{{defendant_id}}。\n联系电话：{{defendant_phone}}",
+      "fields": [
+        {"key": "defendant_name", "label": "姓名", "type": "string", "required": true},
+        {"key": "defendant_gender", "label": "性别", "type": "select", "options": ["男", "女"]},
+        {"key": "defendant_birth", "label": "出生日期", "type": "date"},
+        {"key": "defendant_ethnic", "label": "民族", "type": "string", "default": "汉"},
+        {"key": "defendant_occupation", "label": "职业", "type": "string"},
+        {"key": "defendant_address", "label": "住址", "type": "string", "required": true},
+        {"key": "defendant_id", "label": "身份证号", "type": "string", "required": true},
+        {"key": "defendant_phone", "label": "联系电话", "type": "string"}
+      ]
+    },
+    {
+      "section": "case_info",
+      "label": "案件信息",
+      "template": "就原告{{plaintiff_name}}诉被告{{defendant_name}}{{case_type}}纠纷一案（案号：{{case_number}}），现提出答辩意见如下：",
+      "fields": [
+        {"key": "plaintiff_name", "label": "原告姓名", "type": "string", "required": true},
+        {"key": "case_type", "label": "案件类型", "type": "string", "example": "合同"},
+        {"key": "case_number", "label": "案号", "type": "string"}
+      ]
+    },
+    {
+      "section": "defense_opinions",
+      "label": "答辩意见",
+      "template": "答辩请求：\n{{#defense_requests}}\n{{index}}. {{item}}\n{{/defense_requests}}\n\n事实与理由：\n\n{{defense_reasons}}\n\n{{#evidence}}证据及证明目的：\n{{evidence}}{{/evidence}}",
+      "fields": [
+        {"key": "defense_requests", "label": "答辩请求", "type": "list", "required": true},
+        {"key": "defense_reasons", "label": "事实与理由", "type": "text", "required": true},
+        {"key": "evidence", "label": "证据", "type": "list"}
+      ],
+      "examples": {
+        "defense_requests": [
+          "请求驳回原告的全部诉讼请求；",
+          "请求确认原告主张的债权已超过诉讼时效；",
+          "请求判令原告承担本案诉讼费用；",
+          "请求确认合同有效，继续履行；",
+          "请求减少原告主张的违约金数额。"
+        ]
+      }
+    },
+    {
+      "section": "closing",
+      "label": "结尾",
+      "template": "此致\n{{court_name}}\n\n答辩人：{{defendant_name}}\n{{date}}",
+      "fields": [
+        {"key": "court_name", "label": "受诉法院", "type": "string", "required": true},
+        {"key": "date", "label": "日期", "type": "date", "auto": true}
+      ]
+    }
+  ]
+}

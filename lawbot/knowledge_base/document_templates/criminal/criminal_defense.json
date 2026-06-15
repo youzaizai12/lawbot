@@ -1,0 +1,111 @@
+{
+  "template_id": "criminal_defense",
+  "name": "刑事辩护意见书",
+  "version": "1.0.0",
+  "title": "关于{{defendant_name}}涉嫌{{crime_charge}}一案的\n辩护意见书",
+  "structure": [
+    {
+      "section": "header",
+      "label": "首部",
+      "template": "辩护人：{{lawyer_name}}，{{lawyer_law_firm}}律师事务所律师\n联系电话：{{lawyer_phone}}\n\n尊敬的{{court_name}}、{{procuratorate_name}}：\n\n本辩护人接受{{defendant_name}}及其家属的委托，并征得被告人本人同意，担任其辩护人。接受委托后，辩护人通过会见被告人、查阅案卷材料、调查取证，对本案有了全面了解。现依据事实和法律，提出以下辩护意见：",
+      "fields": [
+        {"key": "defendant_name", "label": "被告人姓名", "type": "string", "required": true},
+        {"key": "crime_charge", "label": "涉嫌罪名", "type": "string", "required": true},
+        {"key": "lawyer_name", "label": "辩护律师姓名", "type": "string", "default": ""},
+        {"key": "lawyer_law_firm", "label": "律所名称", "type": "string", "default": ""},
+        {"key": "lawyer_phone", "label": "律师电话", "type": "string", "default": ""},
+        {"key": "court_name", "label": "法院名称", "type": "string", "required": true},
+        {"key": "procuratorate_name", "label": "检察院名称", "type": "string"}
+      ]
+    },
+    {
+      "section": "case_basics",
+      "label": "案件基本情况",
+      "template": "一、案件基本情况\n\n{{case_basics}}\n\n起诉书指控：{{indictment_claim}}",
+      "fields": [
+        {"key": "case_basics", "label": "案件基本事实", "type": "text", "required": true},
+        {"key": "indictment_claim", "label": "起诉书指控内容", "type": "text"}
+      ]
+    },
+    {
+      "section": "defense_opinions",
+      "label": "辩护意见",
+      "template": "二、辩护意见\n\n{{#defense_opinions}}\n{{index}}. {{opinion}}\n\n{{/defense_opinions}}",
+      "fields": [
+        {"key": "defense_opinions", "label": "辩护意见", "type": "list", "required": true, "min_items": 1}
+      ],
+      "examples": {
+        "defense_opinions": [
+          "关于定罪问题的辩护意见",
+          "关于量刑问题的辩护意见",
+          "关于程序问题的辩护意见",
+          "关于证据问题的辩护意见",
+          "关于被告人具有从轻、减轻处罚情节的辩护意见"
+        ]
+      }
+    },
+    {
+      "section": "fact_analysis",
+      "label": "事实分析",
+      "template": "{{#fact_analysis_section}}\n（一）事实分析\n\n{{fact_analysis}}\n\n{{/fact_analysis_section}}",
+      "fields": [
+        {"key": "fact_analysis", "label": "事实分析内容", "type": "text"}
+      ]
+    },
+    {
+      "section": "evidence_analysis",
+      "label": "证据分析",
+      "template": "{{#evidence_analysis_section}}\n（二）证据分析\n\n{{evidence_analysis}}\n\n{{#evidence_issues}}证据存在的具体问题：\n{{evidence_issues}}{{/evidence_issues}}\n\n{{/evidence_analysis_section}}",
+      "fields": [
+        {"key": "evidence_analysis", "label": "证据分析内容", "type": "text"},
+        {"key": "evidence_issues", "label": "证据问题", "type": "list"}
+      ]
+    },
+    {
+      "section": "legal_analysis",
+      "label": "法律适用分析",
+      "template": "{{#legal_analysis_section}}\n（三）法律适用分析\n\n{{legal_analysis}}\n\n{{#legal_provisions}}相关法律依据：\n{{legal_provisions}}{{/legal_provisions}}\n\n{{/legal_analysis_section}}",
+      "fields": [
+        {"key": "legal_analysis", "label": "法律适用分析", "type": "text"},
+        {"key": "legal_provisions", "label": "法律依据", "type": "list"}
+      ]
+    },
+    {
+      "section": "sentencing",
+      "label": "量刑建议",
+      "template": "{{#sentencing_section}}\n三、量刑建议\n\n{{sentencing_analysis}}\n\n{{#mitigating_factors}}从轻、减轻处罚情节：\n{{mitigating_factors}}{{/mitigating_factors}}\n\n{{#aggravating_factors_rebuttal}}公诉机关指控的从重处罚情节不能成立，理由如下：\n{{aggravating_factors_rebuttal}}{{/aggravating_factors_rebuttal}}\n\n{{/sentencing_section}}",
+      "fields": [
+        {"key": "sentencing_analysis", "label": "量刑分析", "type": "text"},
+        {"key": "mitigating_factors", "label": "从轻/减轻情节", "type": "list"},
+        {"key": "aggravating_factors_rebuttal", "label": "从重情节驳斥", "type": "text"}
+      ],
+      "examples": {
+        "mitigating_factors": [
+          "被告人具有自首情节，依法可以从轻或减轻处罚；",
+          "被告人自愿认罪认罚，可以从宽处理；",
+          "被告人系初犯、偶犯，主观恶性较小；",
+          "被告人积极退赃退赔，取得被害人谅解；",
+          "被告人具有立功表现；",
+          "被告人在共同犯罪中起次要作用，系从犯。"
+        ]
+      }
+    },
+    {
+      "section": "conclusion",
+      "label": "结论",
+      "template": "四、结论\n\n综上所述，辩护人认为{{conclusion_summary}}。\n\n{{#sentencing_suggestion}}量刑建议：建议判处{{sentencing_suggestion}}{{/sentencing_suggestion}}\n\n以上辩护意见，恳请贵院依法采纳。",
+      "fields": [
+        {"key": "conclusion_summary", "label": "结论总结", "type": "text", "required": true},
+        {"key": "sentencing_suggestion", "label": "量刑建议", "type": "string"}
+      ]
+    },
+    {
+      "section": "signature",
+      "label": "落款",
+      "template": "此致\n{{court_name}}\n\n辩护人：{{lawyer_name}}\n律师事务所：{{lawyer_law_firm}}\n{{date}}",
+      "fields": [
+        {"key": "date", "label": "日期", "type": "date", "auto": true}
+      ]
+    }
+  ]
+}

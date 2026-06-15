@@ -1,0 +1,75 @@
+{
+  "template_id": "labor_arbitration",
+  "name": "劳动仲裁申请书",
+  "version": "1.0.0",
+  "title": "劳动仲裁申请书",
+  "structure": [
+    {
+      "section": "applicant",
+      "label": "申请人信息",
+      "template": "申请人：{{applicant_name}}，{{applicant_gender}}，{{applicant_birth}}出生，{{applicant_ethnic}}族，住{{applicant_address}}，公民身份号码{{applicant_id}}。\n联系电话：{{applicant_phone}}",
+      "fields": [
+        {"key": "applicant_name", "label": "姓名", "type": "string", "required": true},
+        {"key": "applicant_gender", "label": "性别", "type": "select", "options": ["男", "女"]},
+        {"key": "applicant_birth", "label": "出生日期", "type": "date"},
+        {"key": "applicant_ethnic", "label": "民族", "type": "string", "default": "汉"},
+        {"key": "applicant_address", "label": "住址", "type": "string", "required": true},
+        {"key": "applicant_id", "label": "身份证号", "type": "string", "required": true},
+        {"key": "applicant_phone", "label": "联系电话", "type": "string"}
+      ]
+    },
+    {
+      "section": "respondent",
+      "label": "被申请人信息",
+      "template": "被申请人：{{respondent_name}}\n统一社会信用代码：{{respondent_code}}\n住所地：{{respondent_address}}\n法定代表人：{{respondent_legal_rep}}，职务：{{respondent_position}}\n联系电话：{{respondent_phone}}",
+      "fields": [
+        {"key": "respondent_name", "label": "公司名称", "type": "string", "required": true},
+        {"key": "respondent_code", "label": "统一社会信用代码", "type": "string"},
+        {"key": "respondent_address", "label": "住所地", "type": "string", "required": true},
+        {"key": "respondent_legal_rep", "label": "法定代表人", "type": "string"},
+        {"key": "respondent_position", "label": "职务", "type": "string", "default": "总经理"},
+        {"key": "respondent_phone", "label": "联系电话", "type": "string"}
+      ]
+    },
+    {
+      "section": "arbitration_requests",
+      "label": "仲裁请求",
+      "template": "仲裁请求：\n{{#arbitration_requests}}\n{{index}}. {{item}}\n{{/arbitration_requests}}",
+      "fields": [
+        {"key": "arbitration_requests", "label": "仲裁请求", "type": "list", "required": true}
+      ],
+      "examples": [
+        "请求裁决被申请人支付拖欠的{{year}}年{{month}}月至{{year2}}年{{month2}}月工资共计{{amount}}元；",
+        "请求裁决被申请人支付经济补偿金{{amount}}元（按工作年限{{years}}年计算）；",
+        "请求裁决被申请人支付违法解除劳动合同赔偿金{{amount}}元；",
+        "请求裁决被申请人支付未签订劳动合同的双倍工资差额{{amount}}元；",
+        "请求裁决被申请人支付加班费共计{{amount}}元；",
+        "请求裁决被申请人为申请人补缴{{period}}期间的社会保险；",
+        "请求裁决被申请人出具解除劳动关系证明并办理档案转移手续。"
+      ]
+    },
+    {
+      "section": "facts",
+      "label": "事实与理由",
+      "template": "事实与理由：\n\n{{facts}}\n\n{{#work_period}}申请人与被申请人之间的劳动关系存续期间为{{work_period}}。{{/work_period}}\n\n{{#salary}}申请人月工资为{{salary}}元。{{/salary}}\n\n{{#violation}}被申请人存在以下违法事实：\n{{violation}}{{/violation}}\n\n{{#evidence}}证据清单：\n{{evidence}}{{/evidence}}\n\n根据《中华人民共和国劳动合同法》等相关法律法规，被申请人的行为严重侵犯了申请人的合法权益。现依法提起劳动仲裁，恳请贵委依法裁决，支持申请人的全部请求。",
+      "fields": [
+        {"key": "facts", "label": "事实描述", "type": "text", "required": true},
+        {"key": "work_period", "label": "工作期间", "type": "string", "example": "2020年1月1日至2024年1月1日"},
+        {"key": "salary", "label": "月工资", "type": "string", "example": "8000元"},
+        {"key": "violation", "label": "违法事实", "type": "list"},
+        {"key": "evidence", "label": "证据清单", "type": "list"}
+      ]
+    },
+    {
+      "section": "closing",
+      "label": "结尾",
+      "template": "此致\n{{arbitration_commission}}\n\n申请人：{{applicant_name}}\n{{date}}\n\n附：\n1. 本申请书副本{{copy_count}}份\n2. {{#attachments}}{{item}}\n{{/attachments}}",
+      "fields": [
+        {"key": "arbitration_commission", "label": "仲裁委员会", "type": "string", "required": true, "example": "XX市劳动人事争议仲裁委员会"},
+        {"key": "date", "label": "日期", "type": "date", "auto": true},
+        {"key": "copy_count", "label": "副本份数", "type": "number", "default": 1},
+        {"key": "attachments", "label": "附件", "type": "list"}
+      ]
+    }
+  ]
+}
