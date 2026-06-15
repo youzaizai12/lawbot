@@ -856,7 +856,7 @@ def merge_risk_with_reply(bot_reply: str, risk_level: str, risk_alert: str) -> s
 
 
 # ====================== DeepSeek 配置 ======================
-DEEPSEEK_API_KEY = "sk-f540ee172cd24158aa90364ac6ea1278"
+DEEPSEEK_API_KEY = "sk-..."
 DEEPSEEK_URL = "https://api.deepseek.com/v1/chat/completions"
 
 import urllib3
