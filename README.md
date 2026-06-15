@@ -154,3 +154,10 @@ ConversationSummary对话摘要表（自动提取关键信息）
 缺失字段检测与引导补充
 
 支持docx/txt格式导出
+
+移动端前端界面
+<img width="506" height="975" alt="image" src="https://github.com/user-attachments/assets/f63885b2-ecb3-4dfa-ad8d-927931134792" />
+
+PC端前端界面
+<img width="1276" height="737" alt="image" src="https://github.com/user-attachments/assets/97f65538-ea45-4611-9cd3-b8010ab3cf73" />
+
