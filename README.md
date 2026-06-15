@@ -23,24 +23,43 @@ AI服务	DeepSeek API
 文档导出	python-docx
 项目结构
 text
+
 lowbot/
+
 ├── app.py                      # Flask主应用
+
 ├── knowledge_base/             # 知识库模块
+
 │   ├── __init__.py
+
 │   ├── knowledge_manager.py    # 知识库管理器
+
 │   ├── vector_store.py         # 向量存储引擎
+
 │   ├── template_engine.py      # 文书模板引擎
+
 │   ├── data/
+
 │   │   └── legal_knowledge.json # 知识库数据（约11,700条案例）
+
 │   ├── index/                   # 向量索引存储
+
 │   └── document_templates/      # 文书模板文件
+
 ├── tools/                       # 管理工具
+
 │   └── knowledge_tool.py        # 知识库命令行工具
+
 ├── templates/
+
 │   └── index.html               # 前端页面
+
 ├── stress.py                    # 压力测试脚本
+
 ├── batch_import_laws.py         # 批量数据导入脚本
+
 └── requirements.txt             # Python依赖
+
 数据统计
 分类	案例数量
 交通事故	2,920条
